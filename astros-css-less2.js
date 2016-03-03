@@ -4,7 +4,7 @@ var nodeFS = require('fs');
 var nodePath = require('path');
 var lessParser = require('less');
 var util = require('lang-utils');
-
+var LessPluginAutoPrefix = require('less-plugin-autoprefix');
 var reg_import = /@include *[\"\']([a-z,A-z,\\,\/,\-]+)[\"\'];?/gi;
 
 module.exports = new astro.Middleware({
@@ -60,7 +60,7 @@ module.exports = new astro.Middleware({
             });
             // Web模块 + 页面 LESS
             asset.data = webComCode + (asset.data||'');
-
+            var autoprefixPlugin = new LessPluginAutoPrefix({browsers: ["last 10 versions"]});
             // 处理引用
             processImport(asset, null, null, function(imported, error) {
                 let searchPaths = [];
@@ -72,10 +72,12 @@ module.exports = new astro.Middleware({
                         searchPaths.push(nodePath.join(prjCfg.cssLib, d))
                     }
                 }
+
                 asset.less = asset.data;
                 lessParser.render(asset.data, {
                     compress: prjCfg.compressCss,
-                    paths   : searchPaths
+                    paths   : searchPaths,
+                    plugins: [autoprefixPlugin]
                 }, function(err, output) {
                     if (err) {
                         var line = 1;
