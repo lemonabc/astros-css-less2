@@ -14,7 +14,7 @@ module.exports = new astro.Middleware({
     let project = asset.project;
     let prjCfg = astro.getProject(project);
     // 分析JS模块的依赖
-
+    let isCompress = prjCfg.compressCss || this.config.compress;
     let webComCode = '';
     let components = [];
     if (asset.components && asset.components.length) {
@@ -75,7 +75,7 @@ module.exports = new astro.Middleware({
 
                 asset.less = asset.data;
                 lessParser.render(asset.data, {
-                    compress: prjCfg.compressCss,
+                    compress: isCompress,
                     paths   : searchPaths,
                     plugins: [autoprefixPlugin]
                 }, function(err, output) {
