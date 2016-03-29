@@ -1,11 +1,11 @@
 {
   "name": "astros-css-less2",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "",
   "main": "astros-css-less2.js",
   "dependencies": {
     "less": "^2.5.3",
-    "lang-utils":"^0.0.2",
+    "lang-utils":"~1.0.0",
     "less-plugin-autoprefix":"1.5.1"
   },
   "devDependencies": {},
