@@ -1,9 +1,6 @@
-#astros-css-less2
+支持LESS解析
 
-astros的插件，支持LESS解析。
-
-针对原生LESS语法，新增__@include__关键字，表示引用cssLib（该目录可在配置文件中指定）根目录文件。
-
+* 针对原生LESS语法，新增__@include__关键字，表示引用cssLib（该目录可在配置文件中指定）根目录文件。
 
 ```
 --[dir]projectRoot
