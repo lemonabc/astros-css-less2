@@ -31,3 +31,4 @@
 @import ./base/reset
 ```
 
+> 为了兼容其他打包方案，不建议使用 @include 语法
