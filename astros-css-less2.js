@@ -63,8 +63,8 @@ module.exports = new astro.Middleware({
             asset.data = webComCode + (asset.data||'');
             var autoprefixPlugin = new LessPluginAutoPrefix({browsers: ["last 10 versions"]});
             // 处理引用
+            let searchPaths = [prjCfg.cssLib];
             processImport(asset, null, null, function(imported, error) {
-                let searchPaths = [];
                 let sh = {};
                 for(let im in imported||{}){
                     let d = nodePath.dirname(im);
